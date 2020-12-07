@@ -52,7 +52,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   return (
     <div className="learningModule">
-      <ProgressBar currentQuestionId={currentQuestionId} isComplete={isComplete}/>
+      <ProgressBar currentProgressValue={currentQuestionId} isComplete={isComplete}/>
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
