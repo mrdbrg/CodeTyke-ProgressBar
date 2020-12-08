@@ -52,13 +52,17 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   return (
     <div className="learningModule">
-      <ProgressBar currentProgressValue={currentQuestionId} isComplete={isComplete ? isComplete : !isComplete}/>
       { currentQuestion.title && !isComplete &&
         <>
           <div className="learningModule__header">
-            <div className="learningModule__title">
-              { currentQuestion.title }
-            </div>
+
+              <div className="learningModule__title">
+                <ProgressBar currentProgressValue={currentQuestionId} isComplete={isComplete}/>
+                <div className="learningModule__innerWrapper"> 
+                  { currentQuestion.title }
+                  <img className="learningModule__icon" alt="information icon" src="/assets/info.png" />
+                </div>
+              </div>
             <div className="learningModule__subHeader">
               { currentQuestion.additionalInfo }
             </div>
