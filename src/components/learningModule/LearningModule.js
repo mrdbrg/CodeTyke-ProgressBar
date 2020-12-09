@@ -9,6 +9,7 @@ import './Styles.scss';
 const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
+  const [totalQuestions, setTotalQuestions] = React.useState(0);
   const [isComplete, setIsComplete] = React.useState(false);
   
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
@@ -26,6 +27,8 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       .then((res)=>{
         return res.json();
       }).then((data)=>{
+        console.log(data)
+        setTotalQuestions(data.totalQuestions)
         setQuizData(data);
       }).catch((err)=>{
         console.log(err);
@@ -57,11 +60,8 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
           <div className="learningModule__header">
 
               <div className="learningModule__title">
-                <ProgressBar currentProgressValue={currentQuestionId} isComplete={isComplete}/>
-                <div className="learningModule__innerWrapper"> 
-                  { currentQuestion.title }
-                  <img className="learningModule__icon" alt="information icon" src="/assets/info.png" />
-                </div>
+                <ProgressBar totalQuestions={totalQuestions} currentValue={currentQuestionId} isComplete={isComplete}/>
+                { currentQuestion.title }
               </div>
             <div className="learningModule__subHeader">
               { currentQuestion.additionalInfo }
